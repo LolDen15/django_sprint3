@@ -8,7 +8,7 @@ POST_COUNT = 5
 
 
 def get_posts_and_category_is_published():
-    return Post.objects.filter(
+    return Post.objects.select_related('author', 'location', 'category').filter(
         is_published=True,
         category__is_published=True,
         pub_date__date__lte=timezone.now()
